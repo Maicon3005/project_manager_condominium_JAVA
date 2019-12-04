@@ -123,6 +123,11 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         btnPesquisarApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPesquisarApartamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
         btnPesquisarApartamento.setText("Pesquisar");
+        btnPesquisarApartamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarApartamentoActionPerformed(evt);
+            }
+        });
 
         btnPesquisarMorador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnPesquisarMorador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
@@ -446,6 +451,25 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirTudoActionPerformed
 
+    private void btnPesquisarApartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarApartamentoActionPerformed
+        int numeroApartamento = Integer.parseInt(txtNumeroApartamento.getText());
+        Morador morador = new Morador();
+        MoradorDAO moradorDao = new MoradorDAO();
+        System.out.println(numeroApartamento);
+        morador = moradorDao.pesquisarPorApartamento(numeroApartamento);
+
+        System.out.println(morador.getId());
+
+            //Exibi os dados do obj nos campos de texto
+           /* txtId.setText(String.valueOf(morador.getId()));
+            txtNumeroApartamento.setText(String.valueOf(morador.getNumeroApartamento()));
+            txtNomeMorador.setText(morador.getNomeMorador());
+            txtValorCondominio.setText(String.valueOf(morador.getValorCondominio()));
+            txtDataVencimento.setText(morador.getDataVencimento());
+            situacaoPagamento = morador.isSituacaoPagamento();*/
+    
+    }//GEN-LAST:event_btnPesquisarApartamentoActionPerformed
+
     public void trocaCor(boolean testaData) {
         if (testaData) {
             panelPagamento.setBackground(Color.green);
@@ -455,7 +479,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
             panelPagamento.setBackground(Color.red);
             labelPagamento.setText("                Pagamento Atrasado!");
             situacaoPagamento = false;
-        };
+        }
     }
 
     @SuppressWarnings("empty-statement")

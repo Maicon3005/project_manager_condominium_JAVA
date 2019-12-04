@@ -48,6 +48,33 @@ public class MoradorDAO {
         }
     }
 
+    public Morador pesquisarPorApartamento(int numeroApartamento) {
+        try {
+            //1 passo - criar o sql , organizar e executar.
+            String sql = "select * from Cadastro_Morador where Numero_Condominio =?";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, numeroApartamento);
+
+            ResultSet rs = stmt.executeQuery();
+            Morador morador = new Morador();
+
+            if (rs.next()) {
+                morador.setId(Integer.parseInt("ID"));
+                morador.setNumeroApartamento(Integer.parseInt("Numero_Condominio"));
+                morador.setNomeMorador("Nome");
+                morador.setDataVencimento("Data_Validade");
+                morador.setSituacaoPagamento(Boolean.parseBoolean("Situacao_Pagamento"));
+                morador.setValorCondominio(Double.parseDouble("Valor_Pagamento"));
+            }
+
+            return morador;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Apartamento não encontrado!");
+            return null;
+        }
+    }
+
     public void alterarMorador(Morador morador) {
         try {
             String sql = "update Cadastro_Morador set Numero_Condominio=? ,Nome=? ,Data_Validade=? ,Situacao_Pagamento=? ,Valor_Pagamento= ? where ID=?";
@@ -58,24 +85,21 @@ public class MoradorDAO {
             stmt.setString(3, morador.getDataVencimento());
             stmt.setBoolean(4, morador.isSituacaoPagamento());
             stmt.setDouble(5, morador.getValorCondominio());
-            
+
             stmt.setInt(6, morador.getId());
-            
+
             stmt.execute();
             stmt.close();
-   
-                
+
             /*
-                Cadastro_Morador (
-            ID integer (4) PRIMARY KEY auto_increment NOT NULL,
-        Numero_Condominio INTEGER (4) NOT NULL,
-        Nome VARCHAR (80) NOT NULL,
-        Data_Validade VARCHAR (12) NOT NULL,
-        Situacao_Pagamento BOOLEAN NOT NULL,
-        Valor_Pagamento FLOAT (5,2) NOT NULL,
-            */
-            
-            
+             Cadastro_Morador (
+             ID integer (4) PRIMARY KEY auto_increment NOT NULL,
+             Numero_Condominio INTEGER (4) NOT NULL,
+             Nome VARCHAR (80) NOT NULL,
+             Data_Validade VARCHAR (12) NOT NULL,
+             Situacao_Pagamento BOOLEAN NOT NULL,
+             Valor_Pagamento FLOAT (5,2) NOT NULL,
+             */
             JOptionPane.showMessageDialog(null, "Morador alterado com sucesso!");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
@@ -96,7 +120,7 @@ public class MoradorDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
-    
+
     public void excluirTodosMoradores() {
         try {
             String sql = "truncate table Cadastro_Morador";
@@ -128,7 +152,7 @@ public class MoradorDAO {
                 morador.setValorCondominio(rs.getDouble("Valor_Pagamento"));
 
                 lista.add(morador);
- 
+
             }
             return lista;
         } catch (SQLException e) {
