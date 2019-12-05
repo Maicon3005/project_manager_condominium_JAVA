@@ -5,7 +5,6 @@
  */
 package br.com.gc.view;
 
-import br.com.gc.control.TestaData;
 import br.com.gc.control.Utilitarios;
 import br.com.gc.dao.MoradorDAO;
 import br.com.gc.model.Morador;
@@ -24,7 +23,6 @@ public class FormCadastroMorador extends javax.swing.JFrame {
 
     private boolean situacaoPagamento;
     Utilitarios utilitarios = new Utilitarios();
-    TestaData testaData = new TestaData();
 
     public void listar() {
         MoradorDAO morador = new MoradorDAO();
@@ -37,7 +35,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
                 m.getNumeroApartamento(),
                 m.getNomeMorador(),
                 m.getValorCondominio(),
-                m.getDataVencimento()
+                m.isSituacaoPagamento()
             });
         }
 
@@ -48,6 +46,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
      */
     public FormCadastroMorador() {
         initComponents();
+        btnSim.setSelected(true);
     }
 
     /**
@@ -59,24 +58,24 @@ public class FormCadastroMorador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        BtnSimENao = new javax.swing.ButtonGroup();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         painelAbas = new javax.swing.JTabbedPane();
         panelCadastro = new javax.swing.JPanel();
         txtNomeMorador = new javax.swing.JTextField();
-        btnPesquisarApartamento = new javax.swing.JButton();
-        btnPesquisarMorador = new javax.swing.JButton();
         txtNumeroApartamento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         txtValorCondominio = new javax.swing.JTextField();
-        txtDataVencimento = new javax.swing.JFormattedTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         panelPagamento = new javax.swing.JPanel();
         labelPagamento = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtId = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        btnSim = new javax.swing.JRadioButton();
+        btnNao = new javax.swing.JRadioButton();
         panelPesquisa = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTodosMoradores = new javax.swing.JTable();
@@ -120,40 +119,12 @@ public class FormCadastroMorador extends javax.swing.JFrame {
 
         txtNomeMorador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
-        btnPesquisarApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPesquisarApartamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
-        btnPesquisarApartamento.setText("Pesquisar");
-        btnPesquisarApartamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarApartamentoActionPerformed(evt);
-            }
-        });
-
-        btnPesquisarMorador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnPesquisarMorador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
-        btnPesquisarMorador.setText("Pesquisar");
-
         txtNumeroApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Nome do Morador:");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("Data de Vencimento:");
-
         txtValorCondominio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        try {
-            txtDataVencimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        txtDataVencimento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtDataVencimento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtDataVencimentoKeyReleased(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Nº do Apartamento:");
@@ -175,29 +146,26 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         txtId.setEditable(false);
         txtId.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel6.setText("Pagamento em dia:");
+
+        BtnSimENao.add(btnSim);
+        btnSim.setText("Sim");
+        btnSim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSimActionPerformed(evt);
+            }
+        });
+
+        BtnSimENao.add(btnNao);
+        btnNao.setText("Não");
+
         javax.swing.GroupLayout panelCadastroLayout = new javax.swing.GroupLayout(panelCadastro);
         panelCadastro.setLayout(panelCadastroLayout);
         panelCadastroLayout.setHorizontalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroLayout.createSequentialGroup()
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel4)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtValorCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel2)
-                        .addGap(11, 11, 11)
-                        .addComponent(txtDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jLabel3)
-                        .addGap(10, 10, 10)
-                        .addComponent(txtNumeroApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(btnPesquisarApartamento))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -206,11 +174,30 @@ public class FormCadastroMorador extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomeMorador, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)))
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelCadastroLayout.createSequentialGroup()
-                                .addComponent(txtNomeMorador, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(btnPesquisarMorador)))))
-                .addContainerGap(15, Short.MAX_VALUE))
+                                .addGap(16, 16, 16)
+                                .addComponent(jLabel3)
+                                .addGap(10, 10, 10)
+                                .addComponent(txtNumeroApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelCadastroLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(jLabel6)))
+                                .addGap(10, 10, 10)
+                                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtValorCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                                        .addComponent(btnSim)
+                                        .addGap(10, 10, 10)
+                                        .addComponent(btnNao)))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
             .addComponent(panelPagamento, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelCadastroLayout.setVerticalGroup(
@@ -220,35 +207,32 @@ public class FormCadastroMorador extends javax.swing.JFrame {
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(10, 10, 10)
                         .addComponent(jLabel1))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtNomeMorador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnPesquisarMorador))
-                .addGap(6, 6, 6)
+                        .addGap(7, 7, 7)
+                        .addComponent(txtNomeMorador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(4, 4, 4)
+                        .addGap(11, 11, 11)
                         .addComponent(jLabel3))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtNumeroApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnPesquisarApartamento))
-                .addGap(6, 6, 6)
+                        .addGap(8, 8, 8)
+                        .addComponent(txtNumeroApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(7, 7, 7)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCadastroLayout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel4))
                     .addComponent(txtValorCondominio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8)
-                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDataVencimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(btnSim)
+                    .addComponent(btnNao))
+                .addGap(9, 9, 9)
                 .addComponent(panelPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -259,7 +243,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nº Apartamento", "Nome do Morador", "Valor", "Validade", "Status Pagamento"
+                "Código", "Nº Apartamento", "Nome do Morador", "Valor", "Status Pagamento"
             }
         ));
         tblTodosMoradores.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -270,7 +254,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tblTodosMoradores);
         if (tblTodosMoradores.getColumnModel().getColumnCount() > 0) {
             tblTodosMoradores.getColumnModel().getColumn(3).setResizable(false);
-            tblTodosMoradores.getColumnModel().getColumn(5).setResizable(false);
+            tblTodosMoradores.getColumnModel().getColumn(4).setResizable(false);
         }
 
         javax.swing.GroupLayout panelPesquisaLayout = new javax.swing.GroupLayout(panelPesquisa);
@@ -380,13 +364,13 @@ public class FormCadastroMorador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarMoradorActionPerformed
-
         Morador morador = new Morador();
         morador.setNumeroApartamento(Integer.parseInt(txtNumeroApartamento.getText()));
         morador.setNomeMorador(txtNomeMorador.getText());
-        morador.setDataVencimento(txtDataVencimento.getText());
+        trocaCorCadastro();
         morador.setSituacaoPagamento(situacaoPagamento);
         morador.setValorCondominio(Double.parseDouble(txtValorCondominio.getText()));
+       
         MoradorDAO moradorDAO = new MoradorDAO();
         moradorDAO.cadastrarMorador(morador);
     }//GEN-LAST:event_btnSalvarMoradorActionPerformed
@@ -401,21 +385,18 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         txtNumeroApartamento.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 1).toString());
         txtNomeMorador.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 2).toString());
         txtValorCondominio.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 3).toString());
-        txtDataVencimento.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 4).toString());
+        trocaCorCadastroAlterar(Boolean.parseBoolean(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 4).toString()));
     }//GEN-LAST:event_tblTodosMoradoresMouseClicked
-
-    private void txtDataVencimentoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDataVencimentoKeyReleased
-
-    }//GEN-LAST:event_txtDataVencimentoKeyReleased
 
     private void btnAlterarMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarMoradorActionPerformed
         Morador morador = new Morador();
         morador.setId(Integer.parseInt(txtId.getText()));
         morador.setNumeroApartamento(Integer.parseInt(txtNumeroApartamento.getText()));
         morador.setNomeMorador(txtNomeMorador.getText());
-        morador.setDataVencimento(txtDataVencimento.getText());
+        trocaCorCadastro();
         morador.setSituacaoPagamento(situacaoPagamento);
         morador.setValorCondominio(Double.parseDouble(txtValorCondominio.getText()));
+        
         MoradorDAO moradorDAO = new MoradorDAO();
         moradorDAO.alterarMorador(morador);
 
@@ -451,33 +432,32 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnExcluirTudoActionPerformed
 
-    private void btnPesquisarApartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarApartamentoActionPerformed
-        int numeroApartamento = Integer.parseInt(txtNumeroApartamento.getText());
-        Morador morador = new Morador();
-        MoradorDAO moradorDao = new MoradorDAO();
-        System.out.println(numeroApartamento);
-        morador = moradorDao.pesquisarPorApartamento(numeroApartamento);
+    private void btnSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSimActionPerformed
 
-        System.out.println(morador.getId());
-
-            //Exibi os dados do obj nos campos de texto
-           /* txtId.setText(String.valueOf(morador.getId()));
-            txtNumeroApartamento.setText(String.valueOf(morador.getNumeroApartamento()));
-            txtNomeMorador.setText(morador.getNomeMorador());
-            txtValorCondominio.setText(String.valueOf(morador.getValorCondominio()));
-            txtDataVencimento.setText(morador.getDataVencimento());
-            situacaoPagamento = morador.isSituacaoPagamento();*/
-    
-    }//GEN-LAST:event_btnPesquisarApartamentoActionPerformed
-
-    public void trocaCor(boolean testaData) {
-        if (testaData) {
+    public void trocaCorCadastro() {
+        if (btnSim.isSelected()) {
             panelPagamento.setBackground(Color.green);
             labelPagamento.setText("                  Pagamento OK!");
             situacaoPagamento = true;
         } else {
             panelPagamento.setBackground(Color.red);
             labelPagamento.setText("                Pagamento Atrasado!");
+            situacaoPagamento = false;
+        }
+    }
+    
+    public void trocaCorCadastroAlterar(boolean situacaoPagamento) {
+        if (situacaoPagamento) {
+            panelPagamento.setBackground(Color.green);
+            labelPagamento.setText("                  Pagamento OK!");
+            btnSim.setSelected(true);
+            situacaoPagamento = true;
+        } else {
+            panelPagamento.setBackground(Color.red);
+            labelPagamento.setText("                Pagamento Atrasado!");
+            btnNao.setSelected(true);
             situacaoPagamento = false;
         }
     }
@@ -520,18 +500,19 @@ public class FormCadastroMorador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup BtnSimENao;
     private javax.swing.JButton btnAlterarMorador;
     private javax.swing.JButton btnExcluirMorador;
     private javax.swing.JButton btnExcluirTudo;
+    private javax.swing.JRadioButton btnNao;
     private javax.swing.JButton btnNovoMorador;
-    private javax.swing.JButton btnPesquisarApartamento;
-    private javax.swing.JButton btnPesquisarMorador;
     private javax.swing.JButton btnSalvarMorador;
+    private javax.swing.JRadioButton btnSim;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
@@ -541,7 +522,6 @@ public class FormCadastroMorador extends javax.swing.JFrame {
     private javax.swing.JPanel panelPagamento;
     private javax.swing.JPanel panelPesquisa;
     private javax.swing.JTable tblTodosMoradores;
-    private javax.swing.JFormattedTextField txtDataVencimento;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNomeMorador;
     private javax.swing.JTextField txtNumeroApartamento;

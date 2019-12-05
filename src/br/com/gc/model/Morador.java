@@ -14,6 +14,9 @@ import java.sql.Date;
 public class Morador {
     private int id;
     private String nomeMorador;
+    private int numeroApartamento;
+    private double valorCondominio;
+    private boolean situacaoPagamento;
 
     public int getId() {
         return id;
@@ -22,10 +25,6 @@ public class Morador {
     public void setId(int id) {
         this.id = id;
     }
-    private int numeroApartamento;
-    private double valorCondominio;
-    private String dataVencimento;
-    private boolean situacaoPagamento;
 
     public boolean isSituacaoPagamento() {
         return situacaoPagamento;
@@ -59,13 +58,4 @@ public class Morador {
         this.valorCondominio = valorCondominio;
     }
 
-    public String getDataVencimento() {
-        return dataVencimento;
-    }
-
-    public void setDataVencimento(String dataVencimento) {
-        this.dataVencimento = dataVencimento;
-    }
-    
-    
 }
