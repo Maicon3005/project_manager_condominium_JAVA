@@ -8,6 +8,8 @@ package br.com.gc.dao;
 import br.com.gc.jdbc.ConnectionFactory;
 import br.com.gc.model.Morador;
 import br.com.gc.model.Usuario;
+import br.com.gc.view.FormMenuPrincipal;
+import br.com.gc.view.FrmLogin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -101,5 +103,31 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
             return null;
         }
+    }
+
+    public void fazerLogin(String nomeUsuario, String senha) {
+        try {
+
+            //1 passo - SQL
+            String sql = "select * from cadastro_usuario where Nome_Usuario = ? and Senha = ?";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, nomeUsuario);
+            stmt.setString(2, senha);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                JOptionPane.showMessageDialog(null, "Seja bem vindo ao Sistema");
+                FormMenuPrincipal menu = new FormMenuPrincipal();
+                menu.setVisible(true);
+            } else {
+                //Dados incorretos
+                JOptionPane.showMessageDialog(null, "Dados incorretos!");
+                new FrmLogin().setVisible(true);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro : " + erro);
+        }
+
     }
 }

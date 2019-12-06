@@ -77,7 +77,7 @@ public class FormCadastroUsuario extends javax.swing.JFrame {
         btnSalvarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Cadastro de Morador");
+        setTitle("Cadastro de Usuário");
         setMinimumSize(new java.awt.Dimension(619, 359));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -91,7 +91,7 @@ public class FormCadastroUsuario extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Cadastro de Morador");
+        jLabel8.setText("Cadastro de Usuário");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
