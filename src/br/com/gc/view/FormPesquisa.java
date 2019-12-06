@@ -21,6 +21,7 @@ public class FormPesquisa extends javax.swing.JFrame {
      */
     public FormPesquisa() {
         initComponents();
+        btnSim.setSelected(true);
     }
 
     /**
@@ -32,6 +33,7 @@ public class FormPesquisa extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnSimENao = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPesquisa = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
@@ -94,6 +96,7 @@ public class FormPesquisa extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("Pagamento em dia:");
 
+        btnSimENao.add(btnSim);
         btnSim.setText("Sim");
         btnSim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,6 +104,7 @@ public class FormPesquisa extends javax.swing.JFrame {
             }
         });
 
+        btnSimENao.add(btnNao);
         btnNao.setText("Não");
 
         btnPesquisarApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -275,6 +279,7 @@ public class FormPesquisa extends javax.swing.JFrame {
     private javax.swing.JButton btnPesquisarApartamento;
     private javax.swing.JButton btnPesquisarPagamento;
     private javax.swing.JRadioButton btnSim;
+    private javax.swing.ButtonGroup btnSimENao;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
