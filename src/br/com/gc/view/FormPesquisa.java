@@ -5,16 +5,21 @@
  */
 package br.com.gc.view;
 
+import br.com.gc.dao.PesquisasDAO;
+import br.com.gc.model.Morador;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author maico
  */
-public class FormPesuisa extends javax.swing.JFrame {
+public class FormPesquisa extends javax.swing.JFrame {
 
     /**
      * Creates new form FormPesuisa
      */
-    public FormPesuisa() {
+    public FormPesquisa() {
         initComponents();
     }
 
@@ -28,21 +33,21 @@ public class FormPesuisa extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTodosMoradores = new javax.swing.JTable();
+        tblPesquisa = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtNumeroApartamento = new javax.swing.JTextField();
+        txtPesquisarPorApartamento = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnSim = new javax.swing.JRadioButton();
         btnNao = new javax.swing.JRadioButton();
-        btnNovoMorador = new javax.swing.JButton();
-        btnNovoMorador1 = new javax.swing.JButton();
+        btnPesquisarApartamento = new javax.swing.JButton();
+        btnPesquisarPagamento = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Opções de Busca");
 
-        tblTodosMoradores.setModel(new javax.swing.table.DefaultTableModel(
+        tblPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -50,12 +55,12 @@ public class FormPesuisa extends javax.swing.JFrame {
                 "Código", "Nº Apartamento", "Nome do Morador", "Valor", "Status Pagamento"
             }
         ));
-        tblTodosMoradores.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblTodosMoradoresMouseClicked(evt);
+                tblPesquisaMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblTodosMoradores);
+        jScrollPane1.setViewportView(tblPesquisa);
 
         jPanel3.setBackground(new java.awt.Color(255, 102, 0));
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,7 +86,7 @@ public class FormPesuisa extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        txtNumeroApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtPesquisarPorApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Nº do Apartamento:");
@@ -98,21 +103,21 @@ public class FormPesuisa extends javax.swing.JFrame {
 
         btnNao.setText("Não");
 
-        btnNovoMorador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnNovoMorador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
-        btnNovoMorador.setText("Pesquisar");
-        btnNovoMorador.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisarApartamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPesquisarApartamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
+        btnPesquisarApartamento.setText("Pesquisar");
+        btnPesquisarApartamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoMoradorActionPerformed(evt);
+                btnPesquisarApartamentoActionPerformed(evt);
             }
         });
 
-        btnNovoMorador1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnNovoMorador1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
-        btnNovoMorador1.setText("Pesquisar");
-        btnNovoMorador1.addActionListener(new java.awt.event.ActionListener() {
+        btnPesquisarPagamento.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnPesquisarPagamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/gc/images/pesquisar.png"))); // NOI18N
+        btnPesquisarPagamento.setText("Pesquisar");
+        btnPesquisarPagamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNovoMorador1ActionPerformed(evt);
+                btnPesquisarPagamentoActionPerformed(evt);
             }
         });
 
@@ -135,13 +140,13 @@ public class FormPesuisa extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(btnNao)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnNovoMorador1))
+                                .addComponent(btnPesquisarPagamento))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(10, 10, 10)
-                                .addComponent(txtNumeroApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtPesquisarPorApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnNovoMorador)))
+                                .addComponent(btnPesquisarApartamento)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -154,14 +159,14 @@ public class FormPesuisa extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(jLabel3))
-                    .addComponent(txtNumeroApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNovoMorador))
+                    .addComponent(txtPesquisarPorApartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPesquisarApartamento))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(btnSim)
                     .addComponent(btnNao)
-                    .addComponent(btnNovoMorador1))
+                    .addComponent(btnPesquisarPagamento))
                 .addGap(13, 13, 13)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -170,26 +175,65 @@ public class FormPesuisa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblTodosMoradoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTodosMoradoresMouseClicked
-        painelAbas.setSelectedIndex(0);
-        txtId.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 0).toString());
-        txtNumeroApartamento.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 1).toString());
-        txtNomeMorador.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 2).toString());
-        txtValorCondominio.setText(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 3).toString());
-        trocaCorCadastroAlterar(Boolean.parseBoolean(tblTodosMoradores.getValueAt(tblTodosMoradores.getSelectedRow(), 4).toString()));
-    }//GEN-LAST:event_tblTodosMoradoresMouseClicked
+
+    private void tblPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblPesquisaMouseClicked
+
+    }//GEN-LAST:event_tblPesquisaMouseClicked
 
     private void btnSimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSimActionPerformed
 
-    private void btnNovoMoradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoMoradorActionPerformed
-        utilitarios.LimpaTela(panelCadastro);
-    }//GEN-LAST:event_btnNovoMoradorActionPerformed
+    private void btnPesquisarApartamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarApartamentoActionPerformed
+        PesquisasDAO pesquisa = new PesquisasDAO();
+        List<Morador> lista = pesquisa.listarMoradoresPorApartamento(Integer.parseInt(txtPesquisarPorApartamento.getText()));
+        DefaultTableModel dados = (DefaultTableModel) tblPesquisa.getModel();
+        dados.setNumRows(0);
+        for (Morador m : lista) {
+            dados.addRow(new Object[]{
+                m.getId(),
+                m.getNumeroApartamento(),
+                m.getNomeMorador(),
+                m.getValorCondominio(),
+                m.isSituacaoPagamento()
+            });
+        }
+    }//GEN-LAST:event_btnPesquisarApartamentoActionPerformed
 
-    private void btnNovoMorador1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoMorador1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNovoMorador1ActionPerformed
+    private void btnPesquisarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarPagamentoActionPerformed
+        boolean situacaoPagamento;
+        if (btnSim.isSelected()) {
+            situacaoPagamento = true;
+            PesquisasDAO pesquisa = new PesquisasDAO();
+            List<Morador> lista = pesquisa.listarMoradoresPorPagamento(situacaoPagamento);
+            DefaultTableModel dados = (DefaultTableModel) tblPesquisa.getModel();
+            dados.setNumRows(0);
+            for (Morador m : lista) {
+                dados.addRow(new Object[]{
+                    m.getId(),
+                    m.getNumeroApartamento(),
+                    m.getNomeMorador(),
+                    m.getValorCondominio(),
+                    m.isSituacaoPagamento()
+                });
+            }
+        } else {
+            situacaoPagamento = false;
+            PesquisasDAO pesquisa = new PesquisasDAO();
+            List<Morador> lista = pesquisa.listarMoradoresPorPagamento(situacaoPagamento);
+            DefaultTableModel dados = (DefaultTableModel) tblPesquisa.getModel();
+            dados.setNumRows(0);
+            for (Morador m : lista) {
+                dados.addRow(new Object[]{
+                    m.getId(),
+                    m.getNumeroApartamento(),
+                    m.getNomeMorador(),
+                    m.getValorCondominio(),
+                    m.isSituacaoPagamento()
+                });
+            }
+        }
+    }//GEN-LAST:event_btnPesquisarPagamentoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,41 +246,41 @@ public class FormPesuisa extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormPesuisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormPesuisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormPesuisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormPesuisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormPesquisa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FormPesuisa().setVisible(true);
+                new FormPesquisa().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton btnNao;
-    private javax.swing.JButton btnNovoMorador;
-    private javax.swing.JButton btnNovoMorador1;
+    private javax.swing.JButton btnPesquisarApartamento;
+    private javax.swing.JButton btnPesquisarPagamento;
     private javax.swing.JRadioButton btnSim;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblTodosMoradores;
-    private javax.swing.JTextField txtNumeroApartamento;
+    private javax.swing.JTable tblPesquisa;
+    private javax.swing.JTextField txtPesquisarPorApartamento;
     // End of variables declaration//GEN-END:variables
 }

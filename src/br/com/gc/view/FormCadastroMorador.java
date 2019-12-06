@@ -26,7 +26,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
 
     public void listar() {
         MoradorDAO morador = new MoradorDAO();
-        List<Morador> lista = morador.listarClientes();
+        List<Morador> lista = morador.listarMoradores();
         DefaultTableModel dados = (DefaultTableModel) tblTodosMoradores.getModel();
         dados.setNumRows(0);
         for (Morador m : lista) {

@@ -96,7 +96,7 @@ public class MoradorDAO {
         }
     }
 
-    public List<Morador> listarClientes() {
+    public List<Morador> listarMoradores() {
         try {
             List<Morador> lista = new ArrayList<>();
             String sql = "select * from Cadastro_Morador";
@@ -112,8 +112,8 @@ public class MoradorDAO {
                 morador.setValorCondominio(rs.getDouble("Valor_Pagamento"));
 
                 lista.add(morador);
-
             }
+            
             return lista;
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
