@@ -21,6 +21,7 @@ public class FormPesquisa extends javax.swing.JFrame {
      */
     public FormPesquisa() {
         initComponents();
+        this.setLocationRelativeTo(null);
         btnSim.setSelected(true);
     }
 
@@ -46,8 +47,9 @@ public class FormPesquisa extends javax.swing.JFrame {
         btnPesquisarApartamento = new javax.swing.JButton();
         btnPesquisarPagamento = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Opções de Busca");
+        setResizable(false);
 
         tblPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

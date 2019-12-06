@@ -46,6 +46,7 @@ public class FormCadastroMorador extends javax.swing.JFrame {
      */
     public FormCadastroMorador() {
         initComponents();
+        this.setLocationRelativeTo(null);
         btnSim.setSelected(true);
     }
 
@@ -85,8 +86,11 @@ public class FormCadastroMorador extends javax.swing.JFrame {
         btnAlterarMorador = new javax.swing.JButton();
         btnSalvarMorador = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastro de Morador");
+        setMaximumSize(new java.awt.Dimension(619, 359));
+        setMinimumSize(new java.awt.Dimension(619, 359));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
